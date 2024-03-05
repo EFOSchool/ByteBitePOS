@@ -1,22 +1,21 @@
 const mysql = require('mysql2');
 
-// Create a connection to the MySQL server
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root', 
-  password: 'root', 
-  database: 'byte_bite' 
-});
+function dbConnect() {
 
-// Connect to the MySQL server
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to database: ' + err.stack);
-    return;
-  }
-});
+  // Create a connection to the MySQL server
+  const conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root', 
+    password: 'root', 
+    database: 'byte_bite' 
+  });
 
-// Perform database operations here
-
-// Close the connection
-connection.end();
+  // Connect to the MySQL server
+  conn.connect((err) => {
+    if (err) {
+      console.error('Error connecting to database: ' + err.stack);
+      return;
+    }
+  });
+  return conn;
+}
